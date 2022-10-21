@@ -1,4 +1,4 @@
-module ci_setup
+module jbsv_ci_setup.git
 
 go 1.19
 
