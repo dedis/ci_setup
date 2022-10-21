@@ -8,7 +8,9 @@ on:
 jobs:
 
   build-and-test:
+
     runs-on: ubuntu-latest
+
     steps:
     - name: Set up Go ^1.19
       uses: actions/setup-go@v2
