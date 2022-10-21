@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: echo event
       run: |
-        echo 'Sonar analysis triggered successfully by workflow event'
+        echo 'Sonar analysis triggered successfully'
         cat $GITHUB_EVENT_PATH
 
     - name: Download PR number artifact
