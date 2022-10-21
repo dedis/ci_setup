@@ -82,7 +82,6 @@ jobs:
       uses: shogo82148/actions-goveralls@v1
       with:
         path-to-profile: profile.cov
-        parallel: true
 
   # notifies that all jobs are finished.
   finish:
@@ -90,5 +89,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: shogo82148/actions-goveralls@v1
-        with:
-          parallel-finished: true
