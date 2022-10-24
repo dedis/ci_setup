@@ -20,10 +20,11 @@ jobs:
 
     - name: Download PR number artifact
       if: github.event.workflow_run.event == 'pull_request'
-      uses: actions/download-artifact@v3
+      uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: Java CI
+        run_id: ${{ github.event.workflow_run.id }}
         name: PR_NUMBER
-        path: PR_NUMBER.txt
 
     - name: Read PR_NUMBER.txt
       if: github.event.workflow_run.event == 'pull_request'
@@ -71,7 +72,7 @@ jobs:
       with:
         args: >
           -Dsonar.organization=dedis
-          -Dsonar.projectKey=debugsync
+          -Dsonar.projectKey=ci_setup
           -Dsonar.go.tests.reportPaths=report.json
           -Dsonar.go.coverage.reportPaths=profile.cov
       env:
