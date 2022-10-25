@@ -1,4 +1,4 @@
-name: Build
+name: BuildAndTest
 
 on:
   push:
@@ -48,6 +48,13 @@ jobs:
     - name: Test with coverage
       if: matrix.platform == 'ubuntu-latest'
       run: go test -json -covermode=count -coverprofile=profile.cov ./... > report.json
+
+    # sonar analysis
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     # goverall coverage
     - name: Send coverage
