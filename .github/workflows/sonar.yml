@@ -30,6 +30,8 @@ jobs:
       if: github.event.workflow_run.event == 'pull_request'
       id: pr_number
       uses: juliangruber/read-file-action@v1
+      with:
+        path: ./PR_NUMBER.txt
 
     - name: Request GitHub API for PR data
       if: github.event.workflow_run.event == 'pull_request'

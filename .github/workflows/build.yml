@@ -44,4 +44,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: PR_NUMBER
-        path: PR_NUMBER.txt
+        path: ./PR_NUMBER.txt
