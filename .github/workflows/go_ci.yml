@@ -52,6 +52,12 @@ jobs:
     # sonar analysis
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
+      with:
+        args: >
+          -Dsonar.organization=dedis
+          -Dsonar.projectKey=dedis_ci_setup
+          -Dsonar.go.tests.reportPaths=report.json
+          -Dsonar.go.coverage.reportPaths=profile.cov
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
