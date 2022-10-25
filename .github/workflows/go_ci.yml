@@ -51,6 +51,7 @@ jobs:
 
     # sonar analysis
     - name: SonarCloud Scan
+      if: matrix.platform == 'ubuntu-latest'
       uses: SonarSource/sonarcloud-github-action@master
       with:
         args: >
