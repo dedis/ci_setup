@@ -30,6 +30,8 @@ jobs:
       if: github.event.workflow_run.event == 'pull_request'
       id: pr_number
       uses: juliangruber/read-file-action@v1
+      with:
+        path: ./PR_NUMBER.txt
 
     - name: Request GitHub API for PR data
       if: github.event.workflow_run.event == 'pull_request'
@@ -57,14 +59,6 @@ jobs:
         git checkout -B ${{ fromJson(steps.get_pr_data.outputs.data).base.ref }} upstream/${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
         git checkout ${{ github.event.workflow_run.head_branch }}
         git clean -ffdx && git reset --hard HEAD
-
-    # - name: Download JSON report artifact
-    #   if: github.event.workflow_run.event == 'pull_request'
-    #   uses: actions/download-artifact@v3
-    #   with:
-    #     workflow: Build
-    #     name: COVERAGE
-    #     path: report.json
 
     - name: Sonarcloud scan
       if: github.event.workflow_run.event == 'pull_request'
