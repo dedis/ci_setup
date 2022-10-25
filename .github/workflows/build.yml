@@ -48,7 +48,7 @@ jobs:
       with:
         args: >
           -Dsonar.organization=dedis
-          -Dsonar.projectKey=dedis_dela
+          -Dsonar.projectKey=dedis_ci_setup
           -Dsonar.go.tests.reportPaths=report.json
           -Dsonar.go.coverage.reportPaths=profile.cov
       env:
