@@ -11,19 +11,20 @@ jobs:
 
   sonar-analysis:
     runs-on: ubuntu-latest
-#    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
     - name: echo event
       run: |
-        echo 'Sonar analysis triggered successfully by workflow event'
+        echo 'Sonar analysis triggered successfully'
         cat $GITHUB_EVENT_PATH
 
     - name: Download PR number artifact
       if: github.event.workflow_run.event == 'pull_request'
-      uses: actions/download-artifact@v3
+      uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: Build
+        run_id: ${{ github.event.workflow_run.id }}
         name: PR_NUMBER
-        path: PR_NUMBER.txt
 
     - name: Read PR_NUMBER.txt
       if: github.event.workflow_run.event == 'pull_request'
@@ -57,13 +58,13 @@ jobs:
         git checkout ${{ github.event.workflow_run.head_branch }}
         git clean -ffdx && git reset --hard HEAD
 
-    - name: Download JSON report artifact
-      if: github.event.workflow_run.event == 'pull_request'
-      uses: actions/download-artifact@v3
-      with:
-        workflow: Build
-        name: COVERAGE
-        path: report.json
+    # - name: Download JSON report artifact
+    #   if: github.event.workflow_run.event == 'pull_request'
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     workflow: Build
+    #     name: COVERAGE
+    #     path: report.json
 
     - name: Sonarcloud scan
       if: github.event.workflow_run.event == 'pull_request'
@@ -71,7 +72,7 @@ jobs:
       with:
         args: >
           -Dsonar.organization=dedis
-          -Dsonar.projectKey=debugsync
+          -Dsonar.projectKey=ci_setup
           -Dsonar.go.tests.reportPaths=report.json
           -Dsonar.go.coverage.reportPaths=profile.cov
       env:
@@ -82,7 +83,6 @@ jobs:
       uses: shogo82148/actions-goveralls@v1
       with:
         path-to-profile: profile.cov
-        parallel: true
 
   # notifies that all jobs are finished.
   finish:
@@ -90,5 +90,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: shogo82148/actions-goveralls@v1
-        with:
-          parallel-finished: true

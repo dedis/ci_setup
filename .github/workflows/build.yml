@@ -35,12 +35,12 @@ jobs:
     - name: Test with coverage
       run: go test -json -covermode=count -coverprofile=profile.cov ./... > report.json
 
-    - name: Archive coverage
-      if: github.event_name == 'pull_request'
-      uses: actions/upload-artifact@v3
-      with:
-        name: COVERAGE
-        path: report.json
+    # - name: Archive coverage
+    #   if: github.event_name == 'pull_request'
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: COVERAGE
+    #     path: report.json
 
     - name: Save PR number to file
       if: github.event_name == 'pull_request'
