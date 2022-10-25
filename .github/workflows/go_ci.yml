@@ -70,7 +70,6 @@ jobs:
       with:
         path-to-profile: profile.cov
         parallel: true
-        
 
   # notifies that all test jobs are finished.
   finish:
