@@ -29,6 +29,11 @@ jobs:
       with:
         fetch-depth: 0
 
+    # echo welcome
+    - name: welcome
+      if: matrix.platform == 'ubuntu-latest'
+      run: echo 'Hello World! Welcome!'
+
     # go mod tidy
     - name: Tidy
       if: matrix.platform == 'ubuntu-latest'
@@ -52,7 +57,7 @@ jobs:
     # sonar analysis
     - name: SonarCloud Scan
       if: matrix.platform == 'ubuntu-latest'
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: sonarsource/sonarcloud-github-action@master
       with:
         args: >
           -Dsonar.organization=dedis
