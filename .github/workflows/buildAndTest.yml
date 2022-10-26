@@ -64,6 +64,7 @@ jobs:
           -Dsonar.projectKey=dedis_ci_setup
           -Dsonar.go.tests.reportPaths=report.json
           -Dsonar.go.coverage.reportPaths=profile.cov
+          -Dsonar.scm.disabled=true 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
