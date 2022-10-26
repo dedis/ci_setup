@@ -1,4 +1,4 @@
-module ci_setup.git
+module ci_setup
 
 go 1.19
 
