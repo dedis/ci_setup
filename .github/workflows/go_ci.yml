@@ -29,6 +29,11 @@ jobs:
       with:
         fetch-depth: 0
 
+    # echo welcome
+    - name: welcome
+      if: matrix.platform == 'ubuntu-latest'
+      run: echo 'Hello World! Welcome!'
+
     # go mod tidy
     - name: Tidy
       if: matrix.platform == 'ubuntu-latest'
