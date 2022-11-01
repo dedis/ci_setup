@@ -6,6 +6,7 @@ import (
 
 // ExampleReverse just for a laugh 
 func ExampleReverse(s string) string {
+	_ = buh()
 	return stringutil.Reverse(s)
 }
 
