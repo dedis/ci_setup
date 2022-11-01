@@ -8,3 +8,7 @@ import (
 func ExampleReverse(s string) string {
 	return stringutil.Reverse(s)
 }
+
+func buh() string {
+	return "buh"
+}
