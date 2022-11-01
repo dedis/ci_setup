@@ -18,7 +18,7 @@ jobs:
 
     # setup GO
     - name: Set up Go ^1.19
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         go-version: ^1.19
       id: go
@@ -27,6 +27,7 @@ jobs:
     - name: Check out code into the Go module directory
       uses: actions/checkout@v3
       with:
+        ref: ${{ github.event.pull_request.head.sha }}
         fetch-depth: 0
 
     # echo welcome
