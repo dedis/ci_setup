@@ -64,7 +64,6 @@ jobs:
           -Dsonar.projectKey=dedis_ci_setup
           -Dsonar.go.tests.reportPaths=report.json
           -Dsonar.go.coverage.reportPaths=profile.cov
-          -Dsonar.branch.name=${{ github.head_ref }}
           -Dsonar.pullrequest.key=${{ github.event.number }}
           -Dsonar.pullrequest.branch=${{ github.head_ref }}
           -Dsonar.pullrequest.base=${{ github.event.pull_request.base }}
